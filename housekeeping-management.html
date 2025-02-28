@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housekeeping Management - Admin</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        header {
+            background-color: #1c0ede;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        h2 {
+            color: #1c0ede;
+            margin-bottom: 1rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            text-align: left;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #1c0ede;
+            color: white;
+        }
+
+        .button {
+            background-color: #1c0ede;
+            color: white;
+            padding: 0.5rem 1rem;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0a0ab2;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 1.5rem;
+            z-index: 1000;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .modal.active, .modal-overlay.active {
+            display: block;
+        }
+
+        footer {
+            background-color: #1c0ede;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Housekeeping Management</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="admin.html">Dashboard</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="content">
+            <h2>Room Status</h2>
+            <div class="table-container">
+                <table id="roomTable">
+                    <thead>
+                        <tr>
+                            <th>Room Number</th>
+                            <th>Status</th>
+                            <th>Assigned Staff</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>101</td>
+                            <td>Clean</td>
+                            <td>John Doe</td>
+                            <td><button class="button" onclick="openUpdateModal(101)">Update</button></td>
+                        </tr>
+                        <tr>
+                            <td>102</td>
+                            <td>Dirty</td>
+                            <td>Jane Smith</td>
+                            <td><button class="button" onclick="openUpdateModal(102)">Update</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Updating Room -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal" id="updateModal">
+        <h3>Update Room Status</h3>
+        <form id="updateForm">
+            <label for="roomNumber">Room Number:</label>
+            <input type="text" id="roomNumber" readonly><br><br>
+
+            <label for="status">Status:</label>
+            <select id="status">
+                <option value="Clean">Clean</option>
+                <option value="Dirty">Dirty</option>
+                <option value="In Progress">In Progress</option>
+            </select><br><br>
+
+            <label for="staff">Assigned Staff:</label>
+            <input type="text" id="staff"><br><br>
+
+            <button type="button" onclick="saveUpdate()">Save</button>
+            <button type="button" onclick="closeModal()">Cancel</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 GCTU Hostel Bookings</p>
+    </footer>
+
+    <script>
+        function openUpdateModal(roomNumber) {
+            document.getElementById("roomNumber").value = roomNumber;
+            document.getElementById("modalOverlay").classList.add("active");
+            document.getElementById("updateModal").classList.add("active");
+        }
+
+        function closeModal() {
+            document.getElementById("modalOverlay").classList.remove("active");
+            document.getElementById("updateModal").classList.remove("active");
+        }
+
+        function saveUpdate() {
+            const roomNumber = document.getElementById("roomNumber").value;
+            const status = document.getElementById("status").value;
+            const staff = document.getElementById("staff").value;
+
+            const table = document.getElementById("roomTable");
+            for (let i = 1; i < table.rows.length; i++) {
+                if (table.rows[i].cells[0].innerText === roomNumber) {
+                    table.rows[i].cells[1].innerText = status;
+                    table.rows[i].cells[2].innerText = staff;
+                    break;
+                }
+            }
+
+            closeModal();
+        }
+    </script>
+</body>
+</html>

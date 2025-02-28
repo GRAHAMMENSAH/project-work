@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - GCTU Hostel Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #1c0ede;
+            color: #ffffff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        section {
+            padding: 2rem;
+            width: 80%;
+            margin: 2rem auto;
+            box-sizing: border-box;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .dashboard {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .dashboard div {
+            flex: 1;
+            background-color: #0077cc;
+            color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .dashboard div h3 {
+            margin: 0;
+        }
+
+        .dashboard div:hover {
+            background-color: #005fa3;
+        }
+
+        .button {
+            padding: 0.8rem 1.5rem;
+            background-color: #3519d1;
+            color: #fbfaff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+            margin-top: 1rem;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background-color: #20cf78;
+            color: #ffffff;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+        }
+
+        .table th, .table td {
+            padding: 1rem;
+            text-align: left;
+            border: 1px solid #ccc;
+        }
+
+        .table th {
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            padding: 1rem;
+            width: 100%;
+            border: 1px solid #0077cc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Panel - GCTU Hostel Bookings</h1>
+        <nav>
+            <a href="./index.html">Home</a>
+            <a href="#room-management">Room Management</a>
+            <a href="#booking-management">Booking Management</a>
+            <a href="#user-management">User Management</a>
+            <a href="#payment-management">Payment Management</a>
+            <a href="#reports">Reports</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="dashboard">
+            <h2>Dashboard</h2>
+            <div class="dashboard">
+                <div>
+                    <h3>Total Bookings</h3>
+                    <p>35</p>
+                </div>
+                <div>
+                    <h3>Total Revenue</h3>
+                    <p>1,500 Cedis</p>
+                </div>
+                <div>
+                    <h3>Occupancy Rate</h3>
+                    <p>75%</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="room-management">
+            <h2>Room Management</h2>
+            <form>
+                <div class="form-group">
+                    <label for="room-name">Room Name</label>
+                    <input type="text" id="room-name" placeholder="Enter Room Name">
+                </div>
+                <div class="form-group">
+                    <label for="room-price">Price</label>
+                    <input type="number" id="room-price" placeholder="Enter Price">
+                </div>
+                <div class="form-group">
+                    <label for="room-availability">Availability</label>
+                    <select id="room-availability">
+                        <option value="available">Available</option>
+                        <option value="booked">Booked</option>
+                    </select>
+                </div>
+                <button type="submit" class="button">Add Room</button>
+            </form>
+
+            <h3>Existing Rooms</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Room Name</th>
+                        <th>Price</th>
+                        <th>Availability</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hostel 1</td>
+                        <td>$50</td>
+                        <td>Available</td>
+                        <td><button>Edit</button> <button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>Hostel 2</td>
+                        <td>$60</td>
+                        <td>Booked</td>
+                        <td><button>Edit</button> <button>Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="booking-management">
+            <h2>Booking Management</h2>
+            <h3>Recent Bookings</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>User</th>
+                        <th>Room</th>
+                        <th>Check-in</th>
+                        <th>Check-out</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#001</td>
+                        <td>John Doe</td>
+                        <td>Hostel 1</td>
+                        <td>2024-12-10</td>
+                        <td>2024-12-15</td>
+                        <td>Confirmed</td>
+                    </tr>
+                    <tr>
+                        <td>#002</td>
+                        <td>Jane Smith</td>
+                        <td>Hostel 2</td>
+                        <td>2024-12-12</td>
+                        <td>2024-12-18</td>
+                        <td>Pending</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="user-management">
+            <h2>User Management</h2>
+            <h3>Registered Users</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#001</td>
+                        <td>John Doe</td>
+                        <td>john@example.com</td>
+                        <td><button>View</button> <button>Delete</button></td>
+                    </tr>
+                    <tr>
+                        <td>#002</td>
+                        <td>Jane Smith</td>
+                        <td>jane@example.com</td>
+                        <td><button>View</button> <button>Delete</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="payment-management">
+            <h2>Payment Management</h2>
+            <h3>Payment History</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Payment ID</th>
+                        <th>User</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#001</td>
+                        <td>John Doe</td>
+                        <td>$50</td>
+                        <td>Paid</td>
+                    </tr>
+                    <tr>
+                        <td>#002</td>
+                        <td>Jane Smith</td>
+                        <td>$60</td>
+                        <td>Pending</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+<script>
+    document.getElementById('add-room-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch('/add-room', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Update the room listings in the front-end
+            alert('Room added successfully');
+            // Optionally, refresh the room list on the front-end here
+        });
+    });
+</script>
+
+
+        <section id="reports">
+            <h2>Reports</h2>
+            <button class="button">Generate Revenue Report</button>
+            <button class="button">Generate Occupancy Report</button>
+
+        </section>
+    </main>
+</body>
+</html>

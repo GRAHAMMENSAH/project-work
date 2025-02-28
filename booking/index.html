@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCTU Hostel Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        header {
+            background-color: #1c0ede;
+            color: #ffffff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        #hero {
+            background-image: url('./Images/Background.PNG');
+            background-size: cover;
+            background-position: center center;
+            color: #fff;
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: #3519d1;
+            color: #fbfaff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #20cf78;
+            color: #ffffff;
+        }
+
+        section {
+            padding: 2rem;
+            width: 100%;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #check-availability {
+            background-color: #e8f4fc;
+            border: 2px solid #0077cc;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 2rem auto;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        #check-availability h2 {
+            font-size: 2rem;
+            color: #0077cc;
+        }
+
+        #check-availability form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #check-availability input[type="date"],
+        #check-availability select {
+            padding: 1rem;
+            margin: 1rem;
+            width: 300px;
+            border: 1px solid #0077cc;
+            border-radius: 5px;
+        }
+
+        #check-availability button {
+            padding: 1rem 2rem;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #check-availability button:hover {
+            background-color: #005fa3;
+        }
+
+        
+
+        #hostels {
+            background-image: url('./Images/website img1.PNG');
+            background-size: cover;
+            background-position: center center;
+            color: rgb(11, 11, 11);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 1rem;
+        }
+
+        .hostel {
+            background-color: #ffffff;
+            border: 2px solid #ccc;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 1rem auto;
+            border-radius: 8px;
+        }
+
+        .hostel h3 {
+            margin-top: 0;
+        }
+
+        .hostel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        #student-services {
+            background-color: #f9f9f9;
+            /* Light grey background */
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 2rem auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        #student-services h2 {
+            font-size: 2rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border: 2px solid #0077cc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            width: 30%;
+            box-sizing: border-box;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #0077cc;
+        }
+
+        #contact {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 2rem;
+            color: #0077cc;
+        }
+
+        #contact p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        #contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        #contact input[type="text"],
+        #contact input[type="email"],
+        #contact textarea {
+            padding: 1rem;
+            margin: 1rem 0;
+            width: 80%;
+            border: 1px solid #0077cc;
+            border-radius: 5px;
+        }
+
+        #contact button {
+            padding: 1rem 2rem;
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #contact button:hover {
+            background-color: #005fa3;
+        }
+
+        @media (max-width: 768px) {
+            #student-services {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-card {
+                width: 80%;
+                margin-bottom: 2rem;
+            }
+
+            #contact input[type="text"],
+            #contact input[type="email"],
+            #contact textarea {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>GCTU Hostel Bookings</h1>
+        <nav>
+            <a href="#" onclick="changeBackground('default')">Home</a>
+            <a href="#check-availability" onclick="changeBackground('check-availability')">Check Availability</a>
+            <a href="#hostels" onclick="changeBackground('hostels')">Hostels</a>
+           
+            <a href="#contact" onclick="changeBackground('contact')">Contact Us</a>
+            <a href="#payment" onclick="changeBackground('payment')">Payment</a>
+            <a href="admin.html">Admin Login</a>
+
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero">
+            <h2>Find Your Perfect Hostel</h2>
+            <p>Easy and secure hostel bookings for GCTU students.</p>
+            <a href="#hostels" class="button" onclick="changeBackground('hostels')">Browse Hostels</a>
+        </section>
+
+        <!-- Check Availability Section -->
+        <section id="check-availability">
+            <h2>Check Hostel Availability</h2>
+            <p>Check if a hostel is available for your desired dates.</p>
+            <form>
+                <input type="date" name="check-in" required>
+                <input type="date" name="check-out" required>
+                <select name="hostel">
+                    <option value="hostel1">Hostel 1</option>
+                    <option value="hostel2">Hostel 2</option>
+                    <option value="hostel3">Hostel 3</option>
+                </select>
+                <button type="submit" class="button">Check Availability</button>
+            </form>
+        </section>
+
+        <!-- Hostels Section -->
+        <section id="hostels">
+            <h2>Available Hostels</h2>
+            <div class="hostel">
+                <h3>Hostel Name 1</h3>
+                <p>Description of Hostel 1. Features, pricing, and amenities included.</p>
+                <a href="./Hostel1.html" class="button">View Details</a>
+            </div>
+            <div class="hostel">
+                <h3>Hostel Name 2</h3>
+                <p>Description of Hostel 2. Features, pricing, and amenities included.</p>
+                <a href="./Hostel2.html" class="button">View Details</a>
+            </div>
+            <div class="hostel">
+                <h3>Hostel Name 3</h3>
+                <p>Description of Hostel 3. Features, pricing, and amenities included.</p>
+                <a href="./Hostel3.html" class="button">View Details</a>
+            </div>
+        </section>
+
+        <!-- Student Services Section -->
+        <section id="student-services">
+            <h2>Student Services</h2>
+            <div class="service-card">
+                <h3>Hostel Bookings</h3>
+                <p>Reserve your hostel room online quickly and easily.</p>
+            </div>
+            <div class="service-card">
+                <h3>Maintenance</h3>
+                <p>Report issues and request maintenance for your hostel.</p>
+            </div>
+            <div class="service-card">
+                <h3>Student Support</h3>
+                <p>Access student resources and get assistance when needed.</p>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions, feel free to reach out to us!</p>
+            <form action="#" method="post">
+                <input type="text" placeholder="Your Name" name="name" required>
+                <input type="email" placeholder="Your Email" name="email" required>
+                <textarea placeholder="Your Message" name="message" required></textarea>
+                <button type="submit" class="button">Submit</button>
+            </form>
+        </section>
+<!-- About -->
+        <section id="About">
+            <h2>About</h2>
+            <p>University Hostel Booking System for GCTU
+                Introduction
+                Ghana Communication Technology University (GCTU) accommodates students from diverse locations. Managing
+                hostel facilities efficiently is critical to ensuring students have a seamless and comfortable stay on
+                campus. The proposed GCTU Hostel Booking System is designed to streamline the process of room
+                allocation, payment, and record management for both students and hostel administrators
+
+            </p>
+            <P>
+                Here’s a detailed write-up for a University Hostel Booking System tailored for GCTU (Ghana Communication
+                Technology University):
+
+                University Hostel Booking System for GCTU
+                Introduction
+                Ghana Communication Technology University (GCTU) accommodates students from diverse locations. Managing
+                hostel facilities efficiently is critical to ensuring students have a seamless and comfortable stay on
+                campus. The proposed GCTU Hostel Booking System is designed to streamline the process of room
+                allocation, payment, and record management for both students and hostel administrators.
+
+                System Objectives
+                Ease of Booking: Simplify the process of reserving hostel rooms through an online platform accessible
+                24/7.
+                Transparency: Provide real-time updates on room availability, pricing, and rules.
+                Payment Integration: Allow secure payment options through mobile money, credit cards, and bank
+                transfers.
+                Data Management: Maintain accurate records of students, room allocations, and payment histories.
+                Communication: Enable notifications for booking confirmations, reminders for payment deadlines, and
+                updates on hostel policies.</P>
+
+                <P>Benefits of the System
+                    For Students:
+                    
+                    Eliminates the hassle of manual booking processes.
+                    Ensures fair allocation based on availability.
+                    Provides transparency in pricing and rules.
+                    For Administrators:
+                    
+                    Reduces administrative workload by automating routine tasks.
+                    Improves accuracy in record-keeping and payment tracking.
+                    Facilitates better resource planning through data analytics.
+                    For GCTU:
+                    
+                    Enhances the university’s reputation by offering modern and efficient services.
+                    Ensures optimal utilization of hostel facilities.
+                    Generates detailed insights for decision-making</P>
+
+                    
+        </section>
+    </main>
+</body>
+
+</html>
